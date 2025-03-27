@@ -36,10 +36,12 @@ const GumroadLogin = ({ onSuccess, onCancel }: GumroadLoginProps) => {
         description: "Successfully connected to your Gumroad account",
       });
       onSuccess();
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Login error:", error);
       toast({
         title: "Authentication Failed",
-        description: "Please check your credentials and try again",
+        description:
+          error.message || "Please check your credentials and try again",
         variant: "destructive",
       });
     } finally {
